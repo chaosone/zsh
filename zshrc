@@ -116,14 +116,14 @@ bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 # }}} End configuration added by Zim install
 
-source ~/zsh/zsh-fuc.zsh
-source ~/zsh/zsh-alias.zsh
-source ~/zsh/cursor.zsh
-source ~/zsh/zsh-env.zsh
+source ~/.config/zsh/zsh-fuc.zsh
+source ~/.config/zsh/zsh-alias.zsh
+source ~/.config/zsh/cursor.zsh
+source ~/.config/zsh/zsh-env.zsh
 
 [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
 #auto suggest bindkey
 bindkey ',' autosuggest-accept
 
-[ -f ~/zsh/fzf.zsh ] && source ~/zsh/fzf.zsh
+[ -f ~/.config/zsh/fzf.zsh ] && source ~/.config/zsh/fzf.zsh
 #   RPROMPT="%{$fg[yellow]%}[%D{%f/%m/%Y}|%@]"
