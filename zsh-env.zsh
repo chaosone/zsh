@@ -1,4 +1,8 @@
 export XDG_CONFIG_HOME=$HOME/.config
+export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
+export EDITOR=/usr/bin/nvim
+#alias nvim='nvim -u ~/temp.vim'
+export GOPROXY=https://goproxy.io
 export LOCALBIN=$XDG_CONFIG_HOME/bin
 export PATH=$PATH:$LOCALBIN
 export GOPATH=$HOME/go

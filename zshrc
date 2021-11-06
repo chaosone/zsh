@@ -144,12 +144,10 @@ source ~/.config/zsh/zsh-alias.zsh
 source ~/.config/zsh/cursor.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[ -f ~/.p10k.zsh ] && source ~/.p10k.zsh
-export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
-export EDITOR=/usr/bin/nvim
-#alias nvim='nvim -u ~/temp.vim'
-export GOPROXY=https://goproxy.io
+#[ -f ~/.p10k.zsh ] && source ~/.p10k.zsh
 
-function bs(){
-        firefox $(buku -p -f 40 | fzf | cut -f1)
-}
+# stash current editing command,start to type new command.
+bindkey "\ew" push-line-or-edit
+eval "$(starship init zsh)"
+alias bj='nvim ~/git-source/linux-doc/log.md'
+alias yd=youtube-dl

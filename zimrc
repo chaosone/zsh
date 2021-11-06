@@ -42,3 +42,4 @@ zmodule zsh-users/zsh-history-substring-search
 
 zmodule Aloxaf/fzf-tab
 zmodule romkatv/powerlevel10k
+#zmodule dracula/zsh

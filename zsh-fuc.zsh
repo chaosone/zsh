@@ -8,7 +8,7 @@ if [ ! -f $filename ];then
     chmod u+x $filename
     /usr/bin/nvim $filename
 else
-    echo -e "file exists,exit..."
+    echo -e "file exists..\nexit..."
 fi
 }
 
@@ -48,4 +48,8 @@ fe() {
   local files
   IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
   [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+}
+
+function bs(){
+        firefox $(buku -p -f 40 | fzf | cut -f1)
 }

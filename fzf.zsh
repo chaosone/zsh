@@ -11,7 +11,7 @@ fi
 # Key bindings
 # ------------
 source "/home/why/.fzf/shell/key-bindings.zsh"
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude ".git" --exclude "node_modules" . /etc /home'
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow -E ".git" -E "node_modules" -E ".steam" -E "Steam" . /etc /home/why'
 
 fzf_theme='--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4'
 
@@ -43,7 +43,7 @@ export FZF_DMARK_OPTS="--reverse --height 75% --min-height 30 --cycle -m --ansi 
 function ff(){
 fzf --height 40% --layout reverse --info inline --border \
     --preview 'file {}' --preview-window up,1,border-horizontal \
-    --color 'fg:#bbccdd,fg+:#ddeeff,bg:#334455,preview-bg:#223344,border:#778899'
+    --color 'fg:#bbccdd,fg+:'#ddeeff',bg:#334455,preview-bg:#223344,border:#778899'
 }
 
 
@@ -55,3 +55,25 @@ function cj(){
 function rj(){
         ranger $(fd --type d --hidden --follow --exclude ".git" . '/home/why' | fzf)
 }
+
+fzf-dirs-widget() {
+  # eval cd $(dirs -v | fzf --height 40% --reverse | cut -b3-)
+  local dir=$(dirs -v | fzf --height ${FZF_TMUX_HEIGHT:-40%} --reverse | cut -b3-)
+  if [[ -z "$dir" ]]; then
+    zle redisplay
+    return 0
+  fi
+  eval cd ${dir}
+  local ret=$?
+  unset dir # ensure this doesn't end up appearing in prompt expansion
+  zle reset-prompt
+  return $ret
+}
+zle     -N    fzf-dirs-widget
+
+# Default ALT-X, For Mac OS: Option-X
+if [[ `uname` == "Darwin" ]]; then
+  bindkey '≈' fzf-dirs-widget
+else
+  bindkey '\ex' fzf-dirs-widget
+fi
