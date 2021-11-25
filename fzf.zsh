@@ -40,10 +40,12 @@ _fzf_compgen_dir() {
 export FZF_FZM_OPTS="--reverse --height 75% --min-height 30 --cycle +m --ansi --bind=ctrl-o:accept,ctrl-t:toggle --select-1"
 export FZF_DMARK_OPTS="--reverse --height 75% --min-height 30 --cycle -m --ansi --bind=ctrl-o:accept,ctrl-t:toggle"
 
+### show file info searched
 function ff(){
-fzf --height 40% --layout reverse --info inline --border \
+    fzf --height 40% --layout reverse --info inline --border \
     --preview 'file {}' --preview-window up,1,border-horizontal \
-    --color 'fg:#bbccdd,fg+:'#ddeeff',bg:#334455,preview-bg:#223344,border:#778899'
+    --color 'fg:#bbccdd,fg+:#ddeeff,bg:#334455,preview-bg:#223344,border:#778899'
+
 }
 
 

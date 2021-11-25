@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 function demo(){
-set -x
 #read -p "give your script a name:" name
 filename="./demo.sh"
 if [ ! -f $filename ];then
@@ -53,3 +52,29 @@ fe() {
 function bs(){
         firefox $(buku -p -f 40 | fzf | cut -f1)
 }
+
+riqi(){
+    DATE=$(date "+%Y年%m月%d日 %p %I点%M分")
+    echo "现在是 $DATE"
+}
+
+ssid() {
+iwctl station wlan0 show | grep network | sed 's/Connected network/SSID:/'
+}
+
+function ranger {
+    local IFS=$'\t\n'
+    local tempfile="$(mktemp -t tmp.XXXXXX)"
+    local ranger_cmd=(
+        command
+        ranger
+        --cmd="map Q chain shell echo %d > "$tempfile"; quitall"
+    )
+    
+    ${ranger_cmd[@]} "$@"
+    if [[ -f "$tempfile" ]] && [[ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]]; then
+        cd -- "$(cat "$tempfile")" || return
+    fi
+    command rm -f -- "$tempfile" 2>/dev/null
+}
+

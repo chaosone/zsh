@@ -78,7 +78,8 @@ zstyle ':zim:input' double-dot-expand yes
 
 # Customize the style that the suggestions are shown with.
 # See https://github.com/zsh-users/zsh-autosuggestions/blob/master/README.md#suggestion-highlight-style
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=222'
+#ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=222'
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#00CED1'
 #ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bg=cyan,bold,underline"
 
 
@@ -134,7 +135,7 @@ bindkey -M vicmd 'j' history-substring-search-down
 # }}} End configuration added by Zim install
 
 ###### user configuration
-bindkey ',' autosuggest-accept
+bindkey "\`" autosuggest-accept
 # source some env variables 
 source ~/.config/zsh/zsh-env.zsh
 # souce alias and some functions.
@@ -151,3 +152,14 @@ bindkey "\ew" push-line-or-edit
 eval "$(starship init zsh)"
 alias bj='nvim ~/git-source/linux-doc/log.md'
 alias yd=youtube-dl
+alias lg=lazygit
+#bash $XDG_CONFIG_HOME/zsh/welcome.sh
+#现在是 $(date "+%Y年%m月%d日 %p %I点%M分")
+
+export ZSH_AUTOSUGGEST_STRATEGY=(
+    history
+    completion
+)
+
+### visted 
+export PATH="$PATH:/home/why/.config/nvim/plugged/vim-superman/bin"
